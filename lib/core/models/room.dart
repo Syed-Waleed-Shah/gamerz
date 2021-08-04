@@ -28,6 +28,20 @@ class Room {
   static Room fromJson(DocumentSnapshot json) {
     return Room(
       gameName: json['gameName'],
+      roomName: json['roomName'] ?? '',
+      roomId: json['roomId'] ?? '',
+      roomPassword: json['roomPassword'] ?? '',
+      roomMode: json['roomMode'] ?? '',
+      roomType: json['roomType'] ?? '',
+      roomMap: json['roomMap'] ?? '',
+      userId: json['userId'] ?? '',
+      roomRules: json['roomRules'] ?? '',
+    );
+  }
+
+  static Room fromMap(Map<String, dynamic> json) {
+    return Room(
+      gameName: json['gameName'] ?? '',
       roomName: json['roomName'],
       roomId: json['roomId'],
       roomPassword: json['roomPassword'],

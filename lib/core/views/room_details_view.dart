@@ -20,6 +20,9 @@ class RoomDetailsView extends StatelessWidget {
             child: Column(
               children: [
                 Card(
+                  child: Text("Game Name: ${room.gameName}"),
+                ),
+                Card(
                   child: Text("Room Name: ${room.roomName}"),
                 ),
                 Card(

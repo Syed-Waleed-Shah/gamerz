@@ -19,33 +19,59 @@ class RoomsScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text("Rooms"),
         ),
-        body: StreamBuilder<QuerySnapshot>(
-          stream: RoomsService().roomsStream,
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return Text("unable to load rooms");
-            }
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
-            }
-            return ListView(
-              children: snapshot.data!.docs.map((DocumentSnapshot document) {
-                return ListTile(
-                  title: Text(document['roomName']),
-                  subtitle: Text(
-                      "${document['roomId']} - ${document['roomPassword']}"),
-                  onTap: () {
-                    Room room = Room.fromJson(document);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RoomDetailsView(room: room)));
-                  },
-                );
-              }).toList(),
-            );
-          },
-        ),
+        body: StreamBuilder<List<Room>>(
+            stream: model.getRoomsStream(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Center(child: Text("unable to load rooms"));
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              }
+              return ListView(
+                children: snapshot.data!.map((Room room) {
+                  return ListTile(
+                    title: Text(room.roomName),
+                    subtitle: Text("${room.roomId} - ${room.roomPassword}"),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  RoomDetailsView(room: room)));
+                    },
+                  );
+                }).toList(),
+              );
+            }),
+
+        // StreamBuilder<QuerySnapshot>(
+        //   stream: RoomsService().roomsStream,
+        //   builder: (context, snapshot) {
+        //     if (snapshot.hasError) {
+        //       return Text("unable to load rooms");
+        //     }
+        //     if (snapshot.connectionState == ConnectionState.waiting) {
+        //       return CircularProgressIndicator();
+        //     }
+        //     return ListView(
+        //       children: snapshot.data!.docs.map((DocumentSnapshot document) {
+        //         Room room =
+        //             Room.fromMap(document.data() as Map<String, dynamic>);
+        //         return ListTile(
+        //           title: Text(room.roomName),
+        //           subtitle: Text("${room.roomId} - ${room.roomPassword}"),
+        //           onTap: () {
+        //             Navigator.push(
+        //                 context,
+        //                 MaterialPageRoute(
+        //                     builder: (context) => RoomDetailsView(room: room)));
+        //           },
+        //         );
+        //       }).toList(),
+        //     );
+        //   },
+        // ),
         floatingActionButton: ElevatedButton(
           child: Text("Add Room"),
           onPressed: () {

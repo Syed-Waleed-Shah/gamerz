@@ -6,6 +6,8 @@ import 'package:stacked/stacked.dart';
 
 class RoomsViewModel extends BaseViewModel {
   final FirestoreService fs = FirestoreService();
+  List<Room> _rooms = [];
+
   TextEditingController gameNameCtrl = TextEditingController();
   TextEditingController roomNameCtrl = TextEditingController();
   TextEditingController roomIdCtrl = TextEditingController();
@@ -30,5 +32,13 @@ class RoomsViewModel extends BaseViewModel {
       userId: "temp-7548578",
     );
     return await fs.db.collection('rooms').doc().set(room.toJson());
+  }
+
+  Stream<List<Room>> getRoomsStream() {
+    return fs.db
+        .collection('rooms')
+        .orderBy('timestamp', descending: true)
+        .snapshots()
+        .map((event) => event.docs.map((e) => Room.fromMap(e.data())).toList());
   }
 }
