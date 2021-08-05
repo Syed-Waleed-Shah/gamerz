@@ -6,9 +6,10 @@ import 'package:gamerz/core/viewmodels/viewmodels.dart';
 import 'package:gamerz/core/views/create_room_view.dart';
 import 'package:gamerz/core/views/room_details_view.dart';
 import 'package:stacked/stacked.dart';
+import 'package:auto_route/auto_route.dart';
 
-class RoomsScreen extends StatelessWidget {
-  const RoomsScreen({Key? key}) : super(key: key);
+class RoomsView extends StatelessWidget {
+  const RoomsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,12 +75,7 @@ class RoomsScreen extends StatelessWidget {
         // ),
         floatingActionButton: ElevatedButton(
           child: Text("Add Room"),
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => AddRoomScreen(model: model)));
-          },
+          onPressed: () {},
         ),
       ),
     );

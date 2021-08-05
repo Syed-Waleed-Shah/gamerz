@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gamerz/core/viewmodels/viewmodels.dart';
 import 'package:stacked/stacked.dart';
 
-class AddRoomScreen extends StatelessWidget {
+class CreateRoomView extends StatelessWidget {
   final RoomsViewModel model;
-  const AddRoomScreen({
+  const CreateRoomView({
     Key? key,
     required RoomsViewModel this.model,
   }) : super(key: key);
