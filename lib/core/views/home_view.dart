@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:gamerz/core/views/views.dart';
 import 'package:gamerz/routes/router.gr.dart';
 
 class HomeView extends StatelessWidget {
@@ -15,17 +16,15 @@ class HomeView extends StatelessWidget {
     {'icon': Icons.ac_unit, 'text': 'Rooms'},
     {'icon': Icons.access_alarm_sharp, 'text': 'Team Codes'},
     {'icon': Icons.baby_changing_station, 'text': 'Tournaments'},
-    {'icon': Icons.cabin, 'text': 'Challenges'},
+    {'icon': Icons.card_membership, 'text': 'Challenges'},
     {'icon': Icons.dangerous, 'text': 'Lucky Draw'},
-    {'icon': Icons.e_mobiledata, 'text': 'Lucky Spin'},
+    {'icon': Icons.face, 'text': 'Lucky Spin'},
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Gamerz"),
-      ),
+    return ScreenView(
+      title: "Gamerz",
       body: CustomScrollView(
         slivers: [
           SliverPadding(
@@ -38,7 +37,7 @@ class HomeView extends StatelessWidget {
                       text: features[index]['text'] as String,
                       onTap: () {
                         if (features[index]['text'] == 'Rooms') {
-                          context.pushRoute(RoomsView());
+                          // context.pushRoute(RoomsView());
                         }
                       },
                     );

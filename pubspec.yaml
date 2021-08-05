@@ -26,6 +26,7 @@ dependencies:
   auto_route: ^2.2.0
   cloud_firestore: ^2.4.0
   cupertino_icons: ^1.0.2
+  enum_to_string: ^2.0.1
   firebase_auth: ^3.0.1
   firebase_core: ^1.4.0
   stacked: ^2.2.3
@@ -34,7 +35,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   auto_route_generator: ^2.1.0
-  build_runner:
+  build_runner: null
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
